@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gnufabio.simeditor"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/simeditor_launcher"
+        android:label="@string/app_name"
+        android:requiredForAllUsers="false"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="2.1.0*" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Easily change SIM&apos;s number." />
+
+        <activity
+            android:name="com.gnufabio.simeditor.activities.SimEditorActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gnufabio.simeditor.activities.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName="com.gnufabio.simeditor.activities.SimEditorActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gnufabio.simeditor.activities.SimEditorActivity" />
+        </activity>
+
+        <receiver
+            android:name="com.gnufabio.simeditor.components.BootReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.gnufabio.simeditor.activities.ErrorActivity"
+            android:label="@string/title_activity_error" >
+        </activity>
+    </application>
+
+</manifest>

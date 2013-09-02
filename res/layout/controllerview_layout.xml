@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+   	
+    <RelativeLayout android:id="@+id/container_1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" 
+        android:layout_margin="5dp" >
+    
+       	<Button android:id="@+id/cv_btn_root"
+        	style="?android:attr/buttonStyleSmall"
+       	    android:layout_alignParentRight="true"
+       	    android:layout_height="wrap_content"
+       	    android:layout_width="wrap_content"
+       	    android:layout_centerVertical="true"
+      	  	android:text="@string/cv_solve_btn" 
+       	    android:visibility="gone" />
+       	
+    	<TextView android:id="@+id/cv_root"
+    	    android:text="@null"
+        	android:layout_alignParentLeft="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_toLeftOf="@id/cv_btn_root" />
+    	
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/container_2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/container_1"
+        android:layout_margin="5dp" >
+    	
+    	<Button android:id="@+id/cv_btn_installer"
+        	style="?android:attr/buttonStyleSmall"
+       	    android:layout_alignParentRight="true"
+       	    android:layout_height="wrap_content"
+       	    android:layout_width="wrap_content"
+       	    android:layout_centerVertical="true"
+       	    android:text="@string/cv_solve_btn" 
+       	    android:visibility="gone" />
+       	
+    	<TextView android:id="@+id/cv_installer"
+      	  	android:text="@null"
+        	android:layout_alignParentLeft="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_toLeftOf="@id/cv_btn_installer" />
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/container_3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/container_2"
+        android:layout_margin="5dp" >
+    	
+    	<Button android:id="@+id/cv_btn_framework"
+        	style="?android:attr/buttonStyleSmall"
+       	    android:layout_alignParentRight="true"
+       	    android:layout_height="wrap_content"
+       	    android:layout_width="wrap_content"
+       	    android:layout_centerVertical="true"
+       	    android:text="@string/cv_solve_btn"
+       	    android:visibility="gone" />
+       	
+    	<TextView android:id="@+id/cv_framework"
+      	  	android:text="@null"
+        	android:layout_alignParentLeft="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_toLeftOf="@id/cv_btn_framework" />
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/container_4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/container_3"
+        android:layout_margin="5dp" >
+    	
+    	<Button android:id="@+id/cv_btn_whitelisted"
+        	style="?android:attr/buttonStyleSmall"
+       	    android:layout_alignParentRight="true"
+       	    android:layout_height="wrap_content"
+       	    android:layout_width="wrap_content"
+       	    android:layout_centerVertical="true"
+       	    android:text="@string/cv_solve_btn" 
+       	    android:visibility="gone" />
+       	
+    	<TextView android:id="@+id/cv_whitelisted"
+      	  	android:text="@null"
+        	android:layout_alignParentLeft="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_toLeftOf="@id/cv_btn_whitelisted" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SIM Editor</string>
+    <string name="caption">Current SIM number:</string>
+    <string name="num_placeholder">NULL</string>
+    <string name="waiting_for_reboot">Reboot to apply changes!</string>
+    <string name="inputtext_exp">New number:</string>
+    <string name="action_help_text">Help</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="success_notification_title">SIM number changed</string>
+    <string name="success_notification_text">SIM number has been correctly changed.</string>
+    <string name="title_activity_error">ErrorActivity</string>
+	<string name="error_btn">Copy and exit</string>
+	
+	<string name="error_notification_title">Error</string>
+	<string name="error_notification_text">Tap for more details.</string>
+	<string name="error_act_title">Error\'s log:</string>
+	<string name="cv_solve_btn">Solve!</string>
+	
+	<string name="cv_root_pr">Rooted: %1$s</string>
+	<string name="cv_installer_pr">Xposed Installer: %1$s</string>
+	<string name="cv_framework_pr">Xposed Framework: %1$s</string>
+	<string name="cv_whitelist_pr">Module Whitelisted: %1$s</string>
+	
+</resources>
