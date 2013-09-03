@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.stericson.RootTools.RootTools;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -91,15 +92,14 @@ public class Utils {
 	public static String readErrorFile() {
 		File file = new File(getErrorFilePath());
 		String tmp = "";
-		
-		if(!file.canRead()) return null;
+				if(!file.canRead()) return null;
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
-			char [] buffer = new char[256];
+			String line;
 			
-			while(br.read(buffer) != -1) {
-				tmp += buffer.toString();
+			while((line = br.readLine()) != null) {
+				tmp += line + '\n';
 			}
 			br.close();
 			
@@ -126,8 +126,15 @@ public class Utils {
 			return (xposedBridge.exists() || xposedNvBridge.exists());
 		}
 		
-		public static boolean isRooted() {
+		public static boolean isRootAvailable() {
 			return RootTools.isRootAvailable();
+		}
+		
+		@SuppressLint("WorldReadableFiles")
+		@SuppressWarnings("deprecation")
+		public static boolean isRooted(Context context) {
+			return context.getSharedPreferences(Constants.PREFS_FILE_NAME, Context.MODE_WORLD_READABLE)
+					.getBoolean(Constants.PREFS_ROOT_KEY, Constants.PREFS_ROOT_DEFAULT);
 		}
 		
 		public static boolean isAppProcessBackupAvailable() {
@@ -142,7 +149,7 @@ public class Utils {
 				BufferedReader whitelist = new BufferedReader(new FileReader(Constants.Xposed.XPOSED_WHITELIST_PATH));
 				String module;
 				while ((module = whitelist.readLine()) != null) {
-					if (module.equals(XposedModule.class.getName())){
+					if (module.equals(Utils.Xposed.class.getPackage().getName())){
 						result = true;
 					}
 				}
@@ -169,7 +176,7 @@ public class Utils {
 			apps = appstmp.toArray(apps);
 			
 			for (ApplicationInfo app : apps) {
-				if (app.packageName.equals(Constants.Xposed.XPOSED_INSTALLER_PKG)) {
+				if (app.packageName.equals(Constants.Xposed.XPOSED_PKG)) {
 					result = true;
 				}
 			}

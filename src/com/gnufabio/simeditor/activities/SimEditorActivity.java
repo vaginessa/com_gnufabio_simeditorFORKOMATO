@@ -2,6 +2,7 @@ package com.gnufabio.simeditor.activities;
 
 import com.gnufabio.simeditor.Constants;
 import com.gnufabio.simeditor.R;
+import com.gnufabio.simeditor.RootCheckAsyncTask;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -42,6 +43,16 @@ public class SimEditorActivity extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.sim_editor, menu);
 		
 		final Context mContext = this;
+
+		@SuppressWarnings("deprecation")
+		SharedPreferences mPrefs = getSharedPreferences(Constants.PREFS_FILE_NAME, Context.MODE_WORLD_READABLE);
+		
+		/* Start checking root */
+		boolean firstLaunch = mPrefs.getBoolean(Constants.PREFS_FIRST_LAUNCH_KEY, Constants.PREFS_FIRST_LAUNCH_DEFAULT);
+		if (firstLaunch){
+			new RootCheckAsyncTask(mContext).execute();
+		}
+		
 		
 		mNumberView = (TextView)findViewById(R.id.number_view);
 		mButtonEdit = (ImageButton)findViewById(R.id.button_edit);
@@ -75,9 +86,6 @@ public class SimEditorActivity extends FragmentActivity {
 		/*
 		 * Check app prefs
 		 */
-		
-		@SuppressWarnings("deprecation")
-		SharedPreferences mPrefs = getSharedPreferences(Constants.PREFS_FILE_NAME, Context.MODE_WORLD_READABLE);
 		
 		boolean pWaitingReboot = mPrefs.getBoolean(Constants.PREFS_WAITING_REBOOT_KEY, Constants.PREFS_WAITING_REBOOT_DEFAULT);
 		

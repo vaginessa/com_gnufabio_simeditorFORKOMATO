@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.gnufabio.simeditor.Constants;
 import com.gnufabio.simeditor.R;
+import com.gnufabio.simeditor.RootCheckAsyncTask;
 import com.gnufabio.simeditor.Utils;
 import com.gnufabio.simeditor.activities.ErrorActivity;
 
@@ -18,12 +19,13 @@ import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 
 @SuppressLint("WorldReadableFiles")
+@SuppressWarnings("deprecation")
 public class BootReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(final Context context, Intent callingIntent) {
 		if (callingIntent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-			@SuppressWarnings("deprecation")
+			
 			final SharedPreferences prefs = context.getSharedPreferences(Constants.PREFS_FILE_NAME, Context.MODE_WORLD_READABLE);
 			
 			final boolean pWaitingReboot = prefs.getBoolean(Constants.PREFS_WAITING_REBOOT_KEY, Constants.PREFS_WAITING_REBOOT_DEFAULT);
@@ -41,7 +43,7 @@ public class BootReceiver extends BroadcastReceiver {
 				public void run() {
 					while(lTelephonyManager.getSimState() != TelephonyManager.SIM_STATE_READY) {
 						try {
-							Thread.sleep(30000); //Sleep for 30 seconds
+							Thread.sleep(10000); //Sleep for 10 seconds
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						} 
@@ -67,6 +69,8 @@ public class BootReceiver extends BroadcastReceiver {
 						
 					} else {
 						if (new File(Utils.getErrorFilePath()).exists()) {
+							//Re-check root
+							new RootCheckAsyncTask(context).execute();
 							NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
 					        	.setSmallIcon(R.drawable.simeditor_launcher)
 					        	.setContentTitle(context.getResources().getString(R.string.error_notification_title))

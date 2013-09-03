@@ -25,4 +25,6 @@
 	<string name="cv_framework_pr">Xposed Framework: %1$s</string>
 	<string name="cv_whitelist_pr">Module Whitelisted: %1$s</string>
 	
+	<string name="yes">OK</string>
+	<string name="no">NO</string>
 </resources>
