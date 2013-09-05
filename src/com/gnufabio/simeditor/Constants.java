@@ -24,6 +24,9 @@ public class Constants {
 	
 	public final static String ERROR_FILENAME = ".simeditor_error";
 	
+	public final static String TWITTER_USR = "https://twitter.com/Gnufabio";
+	public final static long TWITTER_USR_ID = 85171931L;
+	
 	public static class Xposed {
 		public static final String XPOSED_BRIDGE_PATH = "/data/xposed/XposedBridge.jar";
 		public static final String XPOSED_BRIDGE_NV_PATH = "/data/xposed/XposedBridge.jar.newversion";
@@ -33,8 +36,10 @@ public class Constants {
 		public static final String XPOSED_INSTALLER_INFO_URL = "http://forum.xda-developers.com/showthread.php?t=1574401";
 		public static final String XPOSED_INSTALLER_URL = "http://dl.xposed.info/latest.apk";
 		
+		//public static final String XPOSED_PKG = "de.robv.android.xposed.installer";
+		//public static final String XPOSED_ACTIVITY = "de.robv.android.xposed.installer.XposedInstallerActivity";
 		public static final String XPOSED_PKG = "de.robv.android.xposed.installer";
-		public static final String XPOSED_ACTIVITY = "de.robv.android.xposed.installer.XposedInstallerActivity";
+		public static final String XPOSED_ACTIVITY = "de.robv.android.xposed.installer.WelcomeActivity";
 		
 		public static final String XPOSED_EXTRA_OPEN_TAB = "opentab";
 		public static final int XPOSED_INSTALLER_TAB = 0;

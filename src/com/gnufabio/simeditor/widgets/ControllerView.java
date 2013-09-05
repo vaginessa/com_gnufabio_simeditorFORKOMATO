@@ -1,4 +1,4 @@
-package com.gnufabio.simeditor.views;
+package com.gnufabio.simeditor.widgets;
 
 import com.gnufabio.simeditor.Constants;
 import com.gnufabio.simeditor.R;
@@ -31,11 +31,10 @@ public class ControllerView extends RelativeLayout {
 	
 	public ControllerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		
 		mContext = context;
 		
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View mView = inflater.inflate(R.layout.controllerview_layout, this, true);
+		View mView = inflater.inflate(R.layout.controllerview_layout, this);
 
 		mRootView = (TextView) mView.findViewById(R.id.cv_root);
 		mInstallerView = (TextView) mView.findViewById(R.id.cv_installer);
@@ -49,6 +48,13 @@ public class ControllerView extends RelativeLayout {
 		
 		mListener = new ButtonsListener();
 		update();
+		
+		
+	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 	
 	public void update() {
@@ -108,7 +114,7 @@ public class ControllerView extends RelativeLayout {
 		public void onClick(View v) {
 			int id = v.getId();
 			String deviceName = android.os.Build.MODEL;
-			
+		
 			Intent intent;
 			
 			switch(id) {

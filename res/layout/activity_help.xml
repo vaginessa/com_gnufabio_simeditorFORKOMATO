@@ -2,16 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HelpActivity" >
-
-   <com.gnufabio.simeditor.views.ControllerView 
+	
+   <com.gnufabio.simeditor.widgets.ControllerView 
        android:id="@+id/controller_view"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
        android:layout_alignParentLeft="true" />
 
+   <Button
+       android:layout_below="@id/controller_view"
+       android:id="@+id/about_xposed"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_margin="2dp"
+       android:gravity="center_horizontal|center_vertical"
+       android:text="@string/about_xposed" />
+   
+   <Button
+       android:id="@+id/gnufabio_twitter_page"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_below="@id/about_xposed"
+       android:layout_margin="2dp"
+       android:gravity="center_horizontal|center_vertical"
+       android:text="@string/gnufabio" />
+   
 </RelativeLayout>

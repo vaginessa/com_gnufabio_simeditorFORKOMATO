@@ -27,4 +27,7 @@
 	
 	<string name="yes">OK</string>
 	<string name="no">NO</string>
+	
+	<string name="about_xposed">About Xposed</string>
+	<string name="gnufabio">\@Gnufabio</string>
 </resources>

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:rs="http://schemas.android.com/apk/res/com.gnufabio.simeditor"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-
 <RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" 
+    android:layout_marginLeft="2dp" >
    	
     <RelativeLayout android:id="@+id/container_1"
         android:layout_width="fill_parent"
@@ -33,7 +29,6 @@
 			android:layout_centerVertical="true"
 			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_toLeftOf="@id/cv_btn_root" />
-    	
     </RelativeLayout>
     
     <RelativeLayout android:id="@+id/container_2"
@@ -114,4 +109,3 @@
 			android:layout_toLeftOf="@id/cv_btn_whitelisted" />
     </RelativeLayout>
 </RelativeLayout>
-</merge>
