@@ -6,6 +6,7 @@ import com.gnufabio.simeditor.RootCheckAsyncTask;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -35,17 +37,40 @@ public class SimEditorActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sim_editor);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.sim_editor, menu);
 		
 		final Context mContext = this;
-
+		final Activity thisActivity = this;
+		
 		@SuppressWarnings("deprecation")
-		SharedPreferences mPrefs = getSharedPreferences(Constants.PREFS_FILE_NAME, Context.MODE_WORLD_READABLE);
+		final SharedPreferences mPrefs = getSharedPreferences(Constants.PREFS_FILE_NAME, Context.MODE_WORLD_READABLE);
+		
+		if(!mPrefs.getBoolean(Constants.PREFS_EULA_KEY, Constants.PREFS_EULA_DEFAULT)){
+			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+			
+			WebView messageView = new WebView(mContext);
+			String eulaContent = mContext.getResources().getString(R.string.eula_content);
+			String message = "<html><body><p align=\"justify\">" + eulaContent + "</p></body></html>";
+			messageView.loadData(message, "text/html", "utf-8");
+			
+			builder.setTitle(R.string.eula_title);
+			builder.setView(messageView);
+			builder.setCancelable(false);
+			builder.setPositiveButton(R.string.agree, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					mPrefs.edit().putBoolean(Constants.PREFS_EULA_KEY, true).commit();
+					dialog.dismiss();
+				}
+			});
+			builder.setNegativeButton(R.string.disagree, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					thisActivity.finish();
+				}
+			});
+			builder.create().show();
+		}
 		
 		/* Start checking root */
 		boolean firstLaunch = mPrefs.getBoolean(Constants.PREFS_FIRST_LAUNCH_KEY, Constants.PREFS_FIRST_LAUNCH_DEFAULT);
@@ -53,16 +78,11 @@ public class SimEditorActivity extends FragmentActivity {
 			new RootCheckAsyncTask(mContext).execute();
 		}
 		
-		
 		mNumberView = (TextView)findViewById(R.id.number_view);
 		mButtonEdit = (ImageButton)findViewById(R.id.button_edit);
 		mWaitingRebootView = (TextView)findViewById(R.id.waiting_reboot);
 		
 		mTelephony = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-		
-		/*
-		 * Get the current SIM Number
-		 */
 		if(mTelephony.getSimState() == TelephonyManager.SIM_STATE_READY) {
 			setNumberText(mTelephony, mNumberView);
 		} else {
@@ -83,22 +103,20 @@ public class SimEditorActivity extends FragmentActivity {
 			}).start();
 		}
 		
-		/*
-		 * Check app prefs
-		 */
-		
 		boolean pWaitingReboot = mPrefs.getBoolean(Constants.PREFS_WAITING_REBOOT_KEY, Constants.PREFS_WAITING_REBOOT_DEFAULT);
 		
 		if (pWaitingReboot){
 			mWaitingRebootView.setVisibility(View.VISIBLE);
 		}
 		updateToPendingNumber(this, mNumberView);
-		
-		/*
-		 * Button Edit listener
-		 */
 		mButtonEdit.setOnClickListener(new EditClickListener(mContext));
 		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.sim_editor, menu);
 		return true;
 	}
 
@@ -182,7 +200,6 @@ public class SimEditorActivity extends FragmentActivity {
 			});
 			
 			lBuilder.setNegativeButton(android.R.string.cancel, null);
-			
 			lBuilder.create().show();
 		}
 		

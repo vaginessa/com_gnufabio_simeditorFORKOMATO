@@ -4,6 +4,9 @@ public class Constants {
 
 	public final static String PREFS_FILE_NAME = "opt";
 	
+	public final static String PREFS_EULA_KEY = "eula";
+	public final static boolean PREFS_EULA_DEFAULT = false;
+		
 	public final static String PREFS_WAITING_REBOOT_KEY = "wait4reboot";
 	public final static boolean PREFS_WAITING_REBOOT_DEFAULT = false;
 	
@@ -26,6 +29,8 @@ public class Constants {
 	
 	public final static String TWITTER_USR = "https://twitter.com/Gnufabio";
 	public final static long TWITTER_USR_ID = 85171931L;
+	
+	public final static String BUGTRACKER_URL ="https://bitbucket.org/gnufabio/com_gnufabio_simeditor/issues";
 	
 	public static class Xposed {
 		public static final String XPOSED_BRIDGE_PATH = "/data/xposed/XposedBridge.jar";

@@ -21,11 +21,21 @@
        android:text="@string/about_xposed" />
    
    <Button
+       android:layout_below="@id/about_xposed"
+       android:id="@+id/report_bug"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_margin="2dp"
+       android:gravity="center_horizontal|center_vertical"
+       android:text="@string/report_bug" />
+   
+   <Button
        android:id="@+id/gnufabio_twitter_page"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content"
        android:layout_alignParentLeft="true"
-       android:layout_below="@id/about_xposed"
+       android:layout_below="@id/report_bug"
        android:layout_margin="2dp"
        android:gravity="center_horizontal|center_vertical"
        android:text="@string/gnufabio" />

@@ -49,6 +49,11 @@ public class HelpActivity extends FragmentActivity implements OnClickListener {
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 			break;
+		case R.id.report_bug:
+			intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.BUGTRACKER_URL));
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			break;
 		case R.id.gnufabio_twitter_page:
 			try {
 			    getPackageManager().getPackageInfo("com.twitter.android", 0);

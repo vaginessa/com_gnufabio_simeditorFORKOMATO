@@ -48,8 +48,6 @@ public class ControllerView extends RelativeLayout {
 		
 		mListener = new ButtonsListener();
 		update();
-		
-		
 	}
 	
 	@Override
